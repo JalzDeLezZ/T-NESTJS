@@ -23,6 +23,7 @@ export class AuthController {
   async login(@Request() req) {
     return await this.authService.login(req.user);
   }
+  /* {"xemail":"correo@ejemplo.com","password":"contraseña123"} */
 
   @Post('register')
   // async register() { return 'register'; }

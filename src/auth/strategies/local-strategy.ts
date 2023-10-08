@@ -1,5 +1,5 @@
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Strategy } from 'passport-local';
 import { AuthService } from '../auth.service';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 
@@ -7,11 +7,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
   constructor(private authService: AuthService) {
     super({
-      usernameField: 'username', // Indica que el campo 'email' se utilizará como nombre de usuario
+      usernameField: 'xemail', // Indica que el campo 'username' se utilizará como nombre de usuario
       passwordField: 'password', // Indica que el campo 'password' se utilizará como contraseña
-
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // or fromHeader('authorization') if you use headers
-      secretOrKey: 'secretjwt4565', // Provide your secret key here
     });
   }
 

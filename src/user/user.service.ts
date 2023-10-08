@@ -9,6 +9,12 @@ export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepo: Repository<User>,
   ) {}
+
+  async findAll() {
+    console.log('🚀 ~ UserService ~ findAll ~ findAll');
+    return await this.userRepo.find();
+  }
+
   async findOne(id: number) {
     return await this.userRepo.findOne({ where: { id: id } });
   }
@@ -17,9 +23,8 @@ export class UserService {
     return await this.userRepo.findOne({ where: { email: userName } });
   }
 
-  async create(inn_data: CreateUserDto) {
-    console.log('🚀 ~ UserService ~ create ~ inn_data:', inn_data);
-    const user = await this.userRepo.create(inn_data);
+  async create(createUserDto: CreateUserDto) {
+    const user = await this.userRepo.create(createUserDto);
     await this.userRepo.save(user);
     const { password, ...result } = user;
     console.log('🚀 ~ UserService ~ create ~ password:', password);

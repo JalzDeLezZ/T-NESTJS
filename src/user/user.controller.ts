@@ -10,14 +10,19 @@ export class UserController {
     private readonly commentService: CommentService,
   ) {}
 
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.userService.findOne(id);
   }
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  create(@Body() payload: CreateUserDto) {
+    return this.userService.create(payload);
   }
   /*{
     "name": "Nombre del Usuario",
