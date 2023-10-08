@@ -19,6 +19,11 @@ export class UserController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
+  /*{
+    "name": "Nombre del Usuario",
+    "email": "correo@ejemplo.com",
+    "password": "contraseña123"
+  }*/
 
   @Get(':id/comments')
   getUserComment(@Param('id') id: string) {

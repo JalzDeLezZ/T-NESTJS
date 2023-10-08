@@ -28,6 +28,11 @@
   <li>npm install pg --save</li>
   <li>npm i class-validator</li>
   <li>@nestjs/mapped-types</li>
+  <li>class-transformer</li>
+  <li>$ npm i --save @nestjs/jwt passport-jwt</li>
+  <li>$ npm i --save-dev @types/passport-jwt</li>
+  <li>$ npm install --save @nestjs/passport passport passport-local</li>
+  <li>$ npm install --save-dev @types/passport-local</li>
 </ul>
 
 ## Commands
