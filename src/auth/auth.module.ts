@@ -7,6 +7,7 @@ import { LocalStrategy } from './strategies/local-strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
 import { JwtStrategy } from './strategies/jwt-strategy';
+import { RefreshJwtStrategy } from './strategies/refreshToken.strategy';
 
 @Module({
   imports: [
@@ -15,10 +16,10 @@ import { JwtStrategy } from './strategies/jwt-strategy';
     JwtModule.register({
       secret: 'secretjwt4565',
       // secret: `${process.env.jwt_secret}`,
-      signOptions: { expiresIn: '3600s' },
+      signOptions: { expiresIn: '60s' },
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy, RefreshJwtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}
