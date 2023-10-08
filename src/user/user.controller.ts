@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { CommentService } from 'src/comment/comment.service';
 import { CreateUserDto } from './dto/createUserDto';
 import { UserService } from './user.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -30,8 +31,15 @@ export class UserController {
     "password": "contraseña123"
   }*/
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id/comments')
   getUserComment(@Param('id') id: string) {
     return this.commentService.findUserComments(id);
   }
+  /* 
+    http://localhost:3000/user/999/comments 
+    Headers -> Authorization -> Bearer token
+    KEY           | VALUE
+    Authorization | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDAwIiwidXNlcm5hbWUiOiJ1c3VhcmlvIiwiaWF0IjoxNjI5MjU0NjY2LCJleH
+  */
 }
