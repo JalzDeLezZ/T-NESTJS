@@ -20,6 +20,7 @@ export class AuthService {
   }
 
   async login(user: User) {
+    console.log('🚀 ~ AuthService ~ login ~ user:', user);
     const payload = {
       username: user.email,
       sub: {
@@ -30,6 +31,7 @@ export class AuthService {
     return {
       ...user,
       accessToken: this.jwtService.sign(payload),
+      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
     };
   }
 }
